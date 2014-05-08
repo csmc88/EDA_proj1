@@ -1,9 +1,11 @@
 #Read File
-dataset <- read.table('household_power_consumption.txt')
+library(data.table)
+dataset <- fread('household_power_consumption.txt', na.strings = '?')
+#read dates on 1 fread --> trasnform --> read the rest on another fread with frame of reference
 
-#Quick Clean
-#Replace Missing STRING, consider reformatting columns CHK
-dataset[dataset=='?'] <- NA
+# // Quick Clean //
+#Reformat COlumn Types
+colTypes <- c(rep('character'))
 
 #Manage Date Conversion
 dates <- paste(dataset[,1],dataset[,2])
